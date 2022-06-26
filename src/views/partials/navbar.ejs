@@ -1,7 +1,7 @@
 <nav class="navbar" style="background-color: #e3f2fd">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Inicio</a>
-		<a class="navbar-brand" href="#">Productos</a>
+		<a class="navbar-brand" href="/login">Inicio</a>
+		<a class="navbar-brand" href="/productos">Productos</a>
 		<a class="navbar-brand" href="#">Carrito</a>
 		<a class="navbar-brand" href="#"
 			><img
@@ -9,5 +9,8 @@
 				src="<%= prueba.img %> "
 				alt=""
 		/></a>
+		<form action="/logout" method="get">
+			<button class="btn btn-primary" type="submit">Cerrar sesion</button>
+		</form>
 	</div>
 </nav>
