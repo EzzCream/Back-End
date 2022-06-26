@@ -1,0 +1,21 @@
+.card-login,
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+label,
+input,
+button,
+a {
+	margin: 5px;
+}
+.card-login {
+	margin: 20px;
+}
+form {
+	border-radius: 10px;
+	padding: 50px;
+	box-shadow: 0 0 5px blue;
+}

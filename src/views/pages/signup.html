@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="/styles/login.css" />
+		<title>Registro</title>
+	</head>
+	<body>
+		<section class="card-login">
+			<form action="/signup" method="post">
+				<h1>Registro</h1>
+				<label for="username">Ingrese su nombre</label>
+				<input
+					class="form-control"
+					name="username"
+					placeholder="Username"
+					type="text"
+					required
+				/>
+				<label for="password">Ingrese su contraseña</label>
+				<input
+					class="form-control"
+					name="password"
+					placeholder="Password"
+					type="password"
+					required
+				/>
+				<label for="email">Ingrese su email</label>
+				<input
+					class="form-control"
+					name="email"
+					placeholder="Email"
+					type="text"
+					required
+				/>
+				<label for="direccion">Ingrese su direccion</label>
+				<input
+					class="form-control"
+					name="direccion"
+					placeholder="Direccion"
+					type="text"
+					required
+				/>
+				<label for="age">Ingrese su edad</label>
+				<input
+					class="form-control"
+					name="age"
+					placeholder="Edad"
+					type="number"
+					required
+				/>
+				<label for="number">Ingrese su numero de telefono</label>
+				<input
+					class="form-control"
+					name="number"
+					placeholder="Numero de telefono"
+					type="text"
+					required
+				/>
+				<label for="img">Ingrese su imagen</label>
+				<input
+					class="form-control"
+					name="img"
+					placeholder="Imagen"
+					type="text"
+					required
+				/>
+				<button class="btn btn-primary" type="submit">ingresar</button>
+				<a href="/login">Ir al login</a>
+			</form>
+		</section>
+	</body>
+</html>
