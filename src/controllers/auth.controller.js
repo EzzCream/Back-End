@@ -1,5 +1,5 @@
 import path from 'path';
-import { logger } from '../logs/loggers.logs.js';
+import { logger } from '../logsConfig/loggers.logs.js';
 
 export function getSignup(req, res) {
 	res.sendFile(path.resolve() + '/src/views/pages/signup.html');

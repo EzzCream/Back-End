@@ -2,7 +2,7 @@ import { Strategy } from 'passport-local';
 import passport from 'passport';
 import bcrypt from 'bcrypt';
 import { UserModel } from '../models/user.model.js';
-import { logger } from '../logs/loggers.logs.js';
+import { logger } from '../logsConfig/loggers.logs.js';
 
 passport.use(
 	'signup',

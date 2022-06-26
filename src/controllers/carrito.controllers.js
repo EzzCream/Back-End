@@ -1,7 +1,7 @@
 import { CartModels } from '../models/carrito.models.js';
 import { time } from '../helpers/time.helpers.js';
 import { ProductsModels } from '../models/producto.models.js';
-import { logger } from '../logs/loggers.logs.js';
+import { logger } from '../logsConfig/loggers.logs.js';
 
 export const createCart = async (req, res) => {
 	try {

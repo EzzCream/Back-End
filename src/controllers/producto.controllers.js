@@ -1,5 +1,5 @@
 import { time } from '../helpers/time.helpers.js';
-import { logger } from '../logs/loggers.logs.js';
+import { logger } from '../logsConfig/loggers.logs.js';
 import { ProductsModels } from '../models/producto.models.js';
 
 export const getProducts = async (req, res) => {

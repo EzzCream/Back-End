@@ -4,7 +4,7 @@ import Products from './routers/producto.routers.js';
 import Carrito from './routers/carrito.routers.js';
 import UserRouter from './routers/pages.routers.js';
 import './config/db.js';
-import { logger } from './logs/loggers.logs.js';
+import { logger } from './logsConfig/loggers.logs.js';
 import passport from 'passport';
 import session from 'express-session';
 
