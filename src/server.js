@@ -7,6 +7,7 @@ import './config/db.js';
 import { logger } from './logsConfig/loggers.logs.js';
 import passport from 'passport';
 import session from 'express-session';
+import cors from 'cors';
 
 const app = express();
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 
 app.use('/', UserRouter);
 app.use('/api/producto', Products);

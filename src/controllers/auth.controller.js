@@ -1,12 +1,20 @@
 import path from 'path';
+import { time } from '../helpers/time.helpers.js';
 import { logger } from '../logsConfig/loggers.logs.js';
+import { CartModels } from '../models/carrito.models.js';
 
 export function getSignup(req, res) {
 	res.sendFile(path.resolve() + '/src/views/pages/signup.html');
 }
-export function postSignup(req, res) {
+export async function postSignup(req, res) {
 	const user = req.user;
-	logger.info(user.id);
+	const timestamp = time();
+	const obj = {
+		userID: user._id,
+		timestamp,
+		products: [],
+	};
+	await CartModels.create(obj);
 	res.sendFile(path.resolve() + '/src/views/pages/login.html');
 }
 export function failSignup(req, res) {
@@ -27,12 +35,10 @@ export function failLogin(req, res) {
 	res.sendFile(path.resolve() + '/src/views/pages/login.html');
 }
 export function logout(req, res) {
-	//req.logout();
 	req.logout(function (err) {
 		if (err) {
-			return next(err);
+			logger.error(err);
 		}
 		res.redirect('/');
 	});
-	res.sendFile(path.resolve() + '/src/views/pages/login.html');
 }

@@ -1,4 +1,5 @@
 import { CartModels } from '../models/carrito.models.js';
+import path from 'path';
 import { time } from '../helpers/time.helpers.js';
 import { ProductsModels } from '../models/producto.models.js';
 import { logger } from '../logsConfig/loggers.logs.js';
@@ -48,7 +49,9 @@ export const addProdCart = async (req, res) => {
 
 		await CartModels.updateOne({ _id: id }, { products });
 
-		res.status(200).send('Product added');
+		res.status(200).send(
+			'<script type="text/javascript">alert("Producto agregado");window.location.href = "/productos";</script>',
+		);
 	} catch (error) {
 		logger.error(error);
 	}
@@ -71,3 +74,13 @@ export const deleteProdCart = async (req, res) => {
 		logger.error(error);
 	}
 };
+
+export async function renderCart(req, res) {
+	if (req.isAuthenticated()) {
+		const prueba = req.user;
+		const { products } = await CartModels.findOne({ userID: prueba._id });
+		res.render('pages/carrito', { products, prueba });
+	} else {
+		res.sendFile(path.resolve() + '/src/views/pages/login.html');
+	}
+}

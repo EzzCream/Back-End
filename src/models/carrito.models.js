@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
 const Schema = new mongoose.Schema({
+	userID: {
+		type: String,
+	},
 	timestamp: {
 		type: String,
 		required: true,

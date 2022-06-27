@@ -16,24 +16,23 @@
 	</head>
 	<body>
 		<%- include('../partials/navbar.ejs') %>
-		<section class="products-detail">
-			<% response.forEach(function(prod){ %>
-			<div class="card">
-				<img class="img" src="<%= prod.img %>" alt="" />
-				<p>Nombre: <%= prod.name %></p>
-				<p>Precio: <%= prod.price %></p>
-				<p>Stock: <%= prod.stock %></p>
-				<p>Categoria: <%= prod.category %></p>
-				<form
-					action="/api/carrito/<%= _id %>/productos/<%= prod._id %>"
-					method="post"
-				>
-					<button type="submit" class="btn btn-primary">
-						Agregar al carrito
-					</button>
+		<section class="cuerpo">
+			<section>
+				<form class="fin-compra" action="">
+					<button class="btn btn-primary">Confirmar pedido</button>
 				</form>
-			</div>
-			<% }) %>
+			</section>
+			<section class="products-detail">
+				<% products.forEach(function(prod){ %>
+				<div class="card">
+					<img class="img" src="<%= prod.img %>" alt="" />
+					<p>Nombre: <%= prod.name %></p>
+					<p>Precio: <%= prod.price %></p>
+					<p>Stock: <%= prod.stock %></p>
+					<p>Categoria: <%= prod.category %></p>
+				</div>
+				<% }) %>
+			</section>
 		</section>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

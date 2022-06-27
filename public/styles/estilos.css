@@ -5,3 +5,39 @@ section {
 	align-items: center;
 	flex-direction: column;
 }
+.products-detail {
+	text-align: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+.card {
+	border: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 250px;
+	height: 404px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+		rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+	background: linear-gradient(
+		293deg,
+		rgb(185, 185, 255) 0%,
+		rgb(72, 225, 255) 100%
+	);
+	margin: 20px;
+}
+.img {
+	margin: 10px;
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+}
+.cuerpo {
+	margin-top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}

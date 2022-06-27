@@ -1,6 +1,8 @@
 import { time } from '../helpers/time.helpers.js';
+import path from 'path';
 import { logger } from '../logsConfig/loggers.logs.js';
 import { ProductsModels } from '../models/producto.models.js';
+import { CartModels } from '../models/carrito.models.js';
 
 export const getProducts = async (req, res) => {
 	try {
@@ -63,3 +65,14 @@ export const updateProduct = async (req, res) => {
 		logger.error(error);
 	}
 };
+
+export async function renderProd(req, res) {
+	if (req.isAuthenticated()) {
+		const prueba = req.user;
+		const response = await ProductsModels.find();
+		const { _id } = await CartModels.findOne({ userID: prueba._id });
+		res.render('pages/productos', { response, prueba, _id });
+	} else {
+		res.sendFile(path.resolve() + '/src/views/pages/login.html');
+	}
+}

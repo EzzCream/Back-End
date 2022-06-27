@@ -1,6 +1,8 @@
 import express from 'express';
 import passport from '../util/passport.utils.js';
 import * as AuthController from '../controllers/auth.controller.js';
+import * as ProdController from '../controllers/producto.controllers.js';
+import * as CartController from '../controllers/carrito.controllers.js';
 
 const router = express.Router();
 
@@ -23,5 +25,9 @@ router.post(
 router.get('/failLogin', AuthController.failLogin);
 
 router.get('/logout', AuthController.logout);
+
+router.get('/productos', ProdController.renderProd);
+
+router.get('/carrito', CartController.renderCart);
 
 export default router;
