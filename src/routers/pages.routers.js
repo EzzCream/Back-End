@@ -30,4 +30,6 @@ router.get('/productos', ProdController.renderProd);
 
 router.get('/carrito', CartController.renderCart);
 
+router.get('/orden', AuthController.genOrder);
+
 export default router;
