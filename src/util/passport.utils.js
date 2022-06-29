@@ -27,7 +27,7 @@ passport.use(
 					direccion: req.body.direccion,
 					age: req.body.age,
 					number: req.body.number,
-					img: req.body.img,
+					img: './uploads/default.jpeg',
 				};
 				const user = await UserModel.create(newUser);
 				return done(null, user);

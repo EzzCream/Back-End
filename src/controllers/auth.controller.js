@@ -6,6 +6,7 @@ import { time } from '../helpers/time.helpers.js';
 import { logger } from '../logsConfig/loggers.logs.js';
 import { CartModels } from '../models/carrito.models.js';
 import { OrdenModels } from '../models/orden.model.js';
+import { UserModel } from '../models/user.model.js';
 
 dotenv.config();
 
@@ -99,5 +100,15 @@ export async function genOrder(req, res) {
 	await client.messages.create(mensaje);
 	res.status(200).send(
 		'<script type="text/javascript">alert("Orden generada");window.location.href = "/productos";</script>',
+	);
+}
+
+export async function updateImg(req, res) {
+	const user = req.user;
+	const doc = req.file;
+	const mess = `./uploads/${doc.originalname}`;
+	await UserModel.updateOne({ _id: user._id }, { img: mess });
+	res.status(200).send(
+		'<script type="text/javascript">alert("Imagen actualizada");window.location.href = "/productos";</script>',
 	);
 }
