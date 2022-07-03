@@ -3,6 +3,7 @@ import path from 'path';
 import { time } from '../helpers/time.helpers.js';
 import { ProductsModels } from '../models/producto.models.js';
 import { logger } from '../logsConfig/loggers.logs.js';
+import * as Service from '../services/general.services.js';
 
 export const createCart = async (req, res) => {
 	try {
@@ -11,8 +12,8 @@ export const createCart = async (req, res) => {
 			timestamp,
 			products: [],
 		};
-		const response = await CartModels.create(obj);
-		res.status(200).send(response._id);
+		const response = Service.create(CartModels, obj);
+		res.status(200).send(response);
 	} catch (error) {
 		logger.error(error);
 	}
@@ -21,7 +22,8 @@ export const createCart = async (req, res) => {
 export const deleteCart = async (req, res) => {
 	try {
 		const { id } = req.params;
-		await CartModels.deleteOne({ _id: id });
+		const _id = id;
+		Service.deleteOne(CartModels, _id);
 		res.status(200).send('Cart deleted');
 	} catch (error) {
 		logger.error(error);
@@ -31,8 +33,9 @@ export const deleteCart = async (req, res) => {
 export const getCart = async (req, res) => {
 	try {
 		const { id } = req.params;
-		const response = await CartModels.findOne({ _id: id });
-		res.status(200).send(response.products);
+		const _id = id;
+		const response = await Service.getAll(CartModels, _id);
+		res.status(200).send(response);
 	} catch (error) {
 		logger.error(error);
 	}
