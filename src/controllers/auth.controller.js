@@ -47,6 +47,7 @@ export async function postSignup(req, res) {
 			timestamp,
 			products: [],
 		};
+
 		await CartModels.create(obj);
 		res.sendFile(path.resolve() + '/src/views/pages/login.html');
 	} catch (error) {

@@ -5,6 +5,10 @@ export const create = async (model, obj) => {
 export const deleteOne = async (model, id) => {
 	await model.deleteOne({ id });
 };
+export const getFind = async (model) => {
+	const response = await model.find();
+	return response;
+};
 export const getAll = async (model, id) => {
 	const response = await model.findOne({ id });
 	return response;
