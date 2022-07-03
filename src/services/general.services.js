@@ -6,6 +6,9 @@ export const deleteOne = async (model, id) => {
 	await model.deleteOne({ id });
 };
 export const getAll = async (model, id) => {
-	const response = await model.findOne({ _id: id });
+	const response = await model.findOne({ id });
 	return response;
+};
+export const updateOne = async (model, id, elemNew) => {
+	await model.updateOne({ _id: id }, { elemNew });
 };

@@ -64,13 +64,15 @@ export const deleteProdCart = async (req, res) => {
 	try {
 		const { id, idProd } = req.params;
 		const cart = await CartModels.findOne({ _id: id });
-		const { products } = cart;
+		//const { products } = cart;
 
-		const newProd = products.filter((res) => {
+		const products = cart.products.filter((res) => {
 			res._id !== idProd;
 		});
 
-		await CartModels.updateOne({ _id: id }, { products: newProd });
+		Service.updateOne(CartModels, id, products);
+
+		//await CartModels.updateOne({ _id: id }, { products });
 
 		res.status(200).send('Product deleted from cart');
 	} catch (error) {
