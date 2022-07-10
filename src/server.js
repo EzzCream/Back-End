@@ -41,8 +41,8 @@ app.set('view engine', 'ejs');
 
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {
-    logger.info(`---------------------------------------------`);
+    logger.info(`----------------------------------------------`);
     logger.info(`Server started on http://localhost:${PORT} ✨`);
-    logger.info(`---------------------------------------------`);
+    logger.info(`----------------------------------------------`);
 });
 server.on('error', (err) => logger.error(err));
