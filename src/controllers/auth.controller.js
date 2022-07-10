@@ -97,7 +97,7 @@ export async function genOrder(req, res) {
 	};
 	await OrdenModels.create(obj);
 	await CartModels.updateOne({ userID: user._id }, { products: [] });
-	await client.messages.create(mensaje);
+	//await client.messages.create(mensaje);
 	res.status(200).send(
 		'<script type="text/javascript">alert("Orden generada");window.location.href = "/productos";</script>',
 	);
