@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha './src/test/DAO.test.js' --timeout 50000",
     "cluster": "pm2 start ./src/server.js --watch -i 4",
     "arti": "artillery quick --count 50 -n 20 http://localhost:8080/api/productos > res.txt",
     "dev": "nodemon --inspect ./src/server.js",
@@ -31,6 +31,7 @@
     "twilio": "^3.77.3"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "eslint": "^8.18.0",
+    "mocha": "^10.0.0"
   }
 }
