@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha './src/test/DAO.test.js' --timeout 50000",
+    "test2": "mocha './src/test/cart.test.js' --timeout 50000",
     "cluster": "pm2 start ./src/server.js --watch -i 4",
     "arti": "artillery quick --count 50 -n 20 http://localhost:8080/api/productos > res.txt",
     "dev": "nodemon --inspect ./src/server.js",

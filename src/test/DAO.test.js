@@ -2,12 +2,12 @@ import assert from 'assert';
 import axios from 'axios';
 
 describe('Test DAO', () => {
-	it('No deberia de estar vacio', async () => {
+	it('Deberia de ser igual al numoer de productos que hay', async () => {
 		const response = await axios.get('http://localhost:8080/api/producto');
 		const res = response.data.length;
 		assert.strictEqual(res, 11);
 	});
-	it('Deberia de ser igual a 1', async () => {
+	it('Deberia de ser igual al objeto', async () => {
 		const response = await axios.get(
 			'http://localhost:8080/api/producto/62b8dcc8f9d489a78b58fbfb',
 		);
@@ -46,7 +46,7 @@ describe('Test DAO', () => {
 		const res = response.data.length;
 		assert.strictEqual(res, 10);
 	});
-	it('Deberia de eliminar 1', async () => {
+	it('Deberia de actualizarlo y ser igual', async () => {
 		const dataUpdateAxios = {
 			name: 'Nombre 1 act',
 			price: 50,
