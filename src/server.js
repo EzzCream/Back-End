@@ -8,6 +8,15 @@ import { logger } from './logsConfig/loggers.logs.js';
 import passport from 'passport';
 import session from 'express-session';
 import cors from 'cors';
+import { graphqlHTTP } from 'express-graphql';
+import {
+	schema,
+	getProducts,
+	getProductsById,
+	createProducts,
+	deleteProduct,
+	updateProduct,
+} from './graphQl/productos.graphql.js';
 
 const app = express();
 dotenv.config();
@@ -31,6 +40,21 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
+
+app.use(
+	'/graphql',
+	graphqlHTTP({
+		schema,
+		rootValue: {
+			getProducts,
+			getProductsById,
+			createProducts,
+			deleteProduct,
+			updateProduct,
+		},
+		graphiql: true,
+	}),
+);
 
 app.use('/', UserRouter);
 app.use('/api/producto', Products);

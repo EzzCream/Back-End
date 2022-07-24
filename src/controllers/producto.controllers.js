@@ -3,13 +3,10 @@ import path from 'path';
 import { logger } from '../logsConfig/loggers.logs.js';
 import { ProductsModels } from '../models/producto.models.js';
 import { CartModels } from '../models/carrito.models.js';
-//import * as Service from '../services/general.services.js';
 import DAO from '../services/DAO/generalFaactory.DAO.js';
 
 export const getProducts = async (req, res) => {
 	try {
-		//const response = await ProductsModels.find();
-		//const response = await Service.getFind(ProductsModels);
 		const response = await DAO.getFind(ProductsModels);
 		res.status(200).json(response);
 	} catch (error) {
@@ -21,8 +18,6 @@ export const getProductsById = async (req, res) => {
 	try {
 		const { id } = req.params;
 		const _id = id;
-		//const response = await ProductsModels.findOne({ _id: id });
-		//const response = await Service.getAll(ProductsModels, _id);
 		const response = await DAO.getAll(ProductsModels, _id);
 		res.status(200).json(response);
 	} catch (error) {
@@ -39,8 +34,6 @@ export const createProducts = async (req, res) => {
 			...body,
 			timestamp,
 		};
-		//await ProductsModels.create(obj);
-		//Service.create(ProductsModels, obj);
 		DAO.create(ProductsModels, obj);
 		res.status(200).send('Product created');
 	} catch (error) {
@@ -52,8 +45,6 @@ export const deleteProduct = async (req, res) => {
 	try {
 		const { id } = req.params;
 		const _id = id;
-		//await ProductsModels.deleteOne({ _id: id });
-		//Service.deleteOne(ProductsModels, _id);
 		DAO.deleteOne(ProductsModels, _id);
 		res.status(200).send('Product deleted');
 	} catch (error) {
