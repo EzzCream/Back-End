@@ -5,6 +5,8 @@ import * as ProdController from '../controllers/producto.controllers.js';
 import * as CartController from '../controllers/carrito.controllers.js';
 import multer from 'multer';
 
+const router = express.Router();
+
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, 'public/uploads');
@@ -15,8 +17,6 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-
-const router = express.Router();
 
 router.get('/signup', AuthController.getSignup);
 
