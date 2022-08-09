@@ -8,15 +8,18 @@ export class generalMongo extends generalBase {
 	async deleteOne(model, id) {
 		await model.deleteOne({ id });
 	}
-	async getAll(model, id) {
+	async getOne(model, id) {
 		const response = await model.findOne({ id });
 		return response;
 	}
-	async getFind(model) {
+	async getAll(model) {
 		const response = await model.find();
 		return response;
 	}
 	async updateOne(model, id, elemNew) {
 		await model.updateOne({ _id: id }, { elemNew });
+	}
+	async cartFind(model, param) {
+		await model.findOne({ userID: param });
 	}
 }

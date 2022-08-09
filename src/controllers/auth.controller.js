@@ -1,7 +1,7 @@
 import path from 'path';
 import { createTransport } from 'nodemailer';
 import dotenv from 'dotenv';
-import twilio from 'twilio';
+// import twilio from 'twilio';
 import { time } from '../helpers/time.helpers.js';
 import { logger } from '../logsConfig/loggers.logs.js';
 import { CartModels } from '../models/carrito.models.js';
@@ -10,13 +10,13 @@ import { UserModel } from '../models/user.model.js';
 
 dotenv.config();
 
-const client = twilio(process.env.SID, process.env.TOKEN);
+// const client = twilio(process.env.SID, process.env.TOKEN);
 
-const mensaje = {
-	body: 'Hola, pedido realizado',
-	from: '+19897955353',
-	to: '+52 55 3023 4861',
-};
+// const mensaje = {
+// 	body: 'Hola, pedido realizado',
+// 	from: '+19897955353',
+// 	to: '+52 55 3023 4861',
+// };
 
 const transporter = createTransport({
 	service: 'gmail',
