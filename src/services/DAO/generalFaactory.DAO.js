@@ -6,7 +6,6 @@ let DAO = null;
 
 switch (selectedDAO) {
 	default:
-		//generalMongo.init();
 		DAO = new generalMongo();
 		break;
 }

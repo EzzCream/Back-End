@@ -7,6 +7,7 @@ import { logger } from '../logsConfig/loggers.logs.js';
 import { CartModels } from '../models/carrito.models.js';
 import { OrdenModels } from '../models/orden.model.js';
 import { UserModel } from '../models/user.model.js';
+import DAO from '../services/DAO/generalFaactory.DAO.js';
 
 dotenv.config();
 
@@ -35,19 +36,19 @@ export async function postSignup(req, res) {
 		const user = req.user;
 		const timestamp = time();
 		const message = `El usuario '${user.username}' ha creado su cuenta con el correo ${user.email} y el numero ${user.number} `;
-		const mailOptions = {
-			from: process.env.USER,
-			to: ['oscar.7n7@gmail.com'],
-			subject: 'Nuevo user',
-			text: message,
-		};
-		await transporter.sendMail(mailOptions);
+		// const mailOptions = {
+		// 	from: process.env.USER,
+		// 	to: ['oscar.7n7@gmail.com'],
+		// 	subject: 'Nuevo user',
+		// 	text: message,
+		// };
+		// await transporter.sendMail(mailOptions);
 		const obj = {
 			userID: user._id,
 			timestamp,
 			products: [],
 		};
-		await CartModels.create(obj);
+		await DAO.create(CartModels, obj);
 		res.sendFile(path.resolve() + '/src/views/pages/login.html');
 	} catch (error) {
 		logger.error(error);

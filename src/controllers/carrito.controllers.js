@@ -3,6 +3,8 @@ import path from 'path';
 import { time } from '../helpers/time.helpers.js';
 import { ProductsModels } from '../models/producto.models.js';
 import { logger } from '../logsConfig/loggers.logs.js';
+import DAO from '../services/DAO/generalFaactory.DAO.js';
+import DTO from '../services/DTO/carrito.DTO.js';
 
 export const createCart = async (req, res) => {
 	try {
@@ -11,8 +13,8 @@ export const createCart = async (req, res) => {
 			timestamp,
 			products: [],
 		};
-		const response = await CartModels.create(obj);
-		res.status(200).send(response._id);
+		const response = await DAO.create(CartModels, obj);
+		res.status(200).send(DTO(response).id);
 	} catch (error) {
 		logger.error(error);
 	}
@@ -21,7 +23,7 @@ export const createCart = async (req, res) => {
 export const deleteCart = async (req, res) => {
 	try {
 		const { id } = req.params;
-		await CartModels.deleteOne({ _id: id });
+		await DAO.deleteOne(CartModels, id);
 		res.status(200).send('Cart deleted');
 	} catch (error) {
 		logger.error(error);
@@ -31,8 +33,8 @@ export const deleteCart = async (req, res) => {
 export const getCart = async (req, res) => {
 	try {
 		const { id } = req.params;
-		const response = await CartModels.findOne({ _id: id });
-		res.status(200).send(response.products);
+		const response = await DAO.getOne(CartModels, id);
+		res.status(200).send(DTO(response).products);
 	} catch (error) {
 		logger.error(error);
 	}
@@ -43,11 +45,11 @@ export const addProdCart = async (req, res) => {
 		const { id, idProd } = req.params;
 		const product = await ProductsModels.findOne({ _id: idProd });
 		const cart = await CartModels.findOne({ _id: id });
-
 		const { products } = cart;
+
 		products.push(product);
 
-		await CartModels.updateOne({ _id: id }, { products });
+		await CartModels.updateOne({ _id: id }, { products: products });
 
 		res.status(200).send(
 			'<script type="text/javascript">alert("Producto agregado");window.location.href = "/productos";</script>',
@@ -60,14 +62,14 @@ export const addProdCart = async (req, res) => {
 export const deleteProdCart = async (req, res) => {
 	try {
 		const { id, idProd } = req.params;
-		const cart = await CartModels.findOne({ _id: id });
+		const cart = await DAO.getOne(CartModels, id);
 		const { products } = cart;
 
 		const newProd = products.filter((res) => {
 			res._id !== idProd;
 		});
 
-		await CartModels.updateOne({ _id: id }, { products: newProd });
+		await DAO.updateOne(CartModels, id, newProd);
 
 		res.status(200).send('Product deleted from cart');
 	} catch (error) {
@@ -78,7 +80,9 @@ export const deleteProdCart = async (req, res) => {
 export async function renderCart(req, res) {
 	if (req.isAuthenticated()) {
 		const prueba = req.user;
-		const { products } = await CartModels.findOne({ userID: prueba._id });
+		const _id = prueba._id;
+		const { products } = await DAO.getUserId(_id, CartModels);
+
 		res.render('pages/carrito', { products, prueba });
 	} else {
 		res.sendFile(path.resolve() + '/src/views/pages/login.html');
